@@ -400,7 +400,7 @@
 						    
 						    <div class="row">
 						      <div class="col-half">
-						      	<button type="reset" class="cancel"> Cancel </button>
+						      	<button type="reset" class="cancel"> Cancel.. </button>
 						      </div>
 						      
 						      <div class="col-half">
