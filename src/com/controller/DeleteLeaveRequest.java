@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class DeleteLeaveRequest
@@ -41,13 +41,13 @@ public class DeleteLeaveRequest extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int leave_id = Integer.parseInt(request.getParameter("leave"));
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		
-		iemployee.DeleteLeaveRequest(leave_id);
+		ipayroll.DeleteLeaveRequest(leave_id);
 		
 		request.setAttribute("value", 1);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeaveRequest.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeaveRequestList.jsp");
 		dispatcher.forward(request, response);
 	}
 

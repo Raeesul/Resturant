@@ -1,57 +1,37 @@
-<%@page import="com.service.EmployeeImpl"%>
-<%@page import="com.service.IEmployee"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.model.Employee"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="css/add.css">
-    <title>View Employee Details</title>
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>View Employees</title>
+
     <!-- Custom fonts for this template-->
     <link href="css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    
+    <!-- Bootstrap link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+    <!-- Form Style -->
+    <link rel="stylesheet" href="css/add.css">
+    
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- Bootstrap core JavaScript-->
-    <script src="js/jquery.min.js"></script>
-    <!-- Core plug in JavaScript-->
-    <script src="js/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-	
-	<style type="text/css">
-    	table{
-    		border-collapse: collapse;
-    		width: 100%;
-    		
-    	}
-    	
-    	table, th, td {
-			border: 1px solid black;
-			text-align: center;
-		}
-		
-		th{
-			height: 50px;
-		}
-    </style>
-	
 </head>
 
 <body id="page-top">
@@ -59,15 +39,15 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Side bar -->
+        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="EmployeeDashboard.jsp">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="User&PayrollDashboard.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin <sup>Employee management</sup></div>
+                <div class="sidebar-brand-text mx-3">Manager User & Payroll<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -75,7 +55,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="EmployeeDashboard.jsp">
+                <a class="nav-link" href="User&PayrollDashboard.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -89,31 +69,74 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-
-           	<li class="nav-item">
-                <a class="nav-link collapsed" href="EmployeeRegister.jsp"><i class="fa fa-user"></i>Add New Employee</a>
-            </li>
-           
-           	<li class="nav-item active">
-                <a class="nav-link collapsed" href="ViewEmployee.jsp"><i class="fa fa-address-card"></i>Employee Details</a>
-            </li>
-           	
-           	<li class="nav-item">
-                <a class="nav-link" href="EnterAttendance.jsp"><i class="fa fa-calendar"></i>Enter Attendance</a>
-            </li>
-           	
-           	<li class="nav-item">
-                <a class="nav-link" href="LeaveRequest.jsp"><i class="fa fa-file-text"></i>Leave Request</a>
-            </li>
-           	
-           	<li class="nav-item">
-                <a class="nav-link" href="CalculateSalary.jsp"><i class="fa fa-calculator"></i>Calculate Salary</a>
+            <li class="nav-item  active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Employee</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Employees:</h6>
+                        <a class="collapse-item" href="AddEmployee.jsp">Add New Employee</a>
+                        <a class="collapse-item active" href="ViewEmployee.jsp">View Employee</a>
+                        <a class="collapse-item" href="EmployeeList.jsp">Employee List</a>
+                    </div>
+                </div>
             </li>
             
+            <!-- Nav Department Details -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="ViewSalaryDetails.jsp"><i class="fa fa-file-text"></i>Salary Details</a>
+                <a class="nav-link" href="Departments.jsp">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Departments</span></a>
             </li>
             
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Leave & Attendance</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Attendance:</h6>
+                        <a class="collapse-item" href="EnterAttendance.jsp">Enter Attendance</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Leave:</h6>
+                        <a class="collapse-item" href="AddLeaveRequest.jsp">Add Leave</a>
+                        <a class="collapse-item" href="LeaveRequestList.jsp">Leave List</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>PayRoll</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Payroll:</h6>
+                        <a class="collapse-item" href="CalculateSalary.jsp">Calculate Salary</a>
+                        <a class="collapse-item" href="Payroll.jsp">Payroll</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            
+            <!-- Nav Monthly Salary Details -->
+            <li class="nav-item">
+                <a class="nav-link" href="ViewSalaryDetails.jsp">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>View Salary</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -122,6 +145,7 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -195,10 +219,6 @@
                                     Alerts Center
                                 </h6>
                                 
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -213,6 +233,7 @@
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
+                                
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
@@ -254,104 +275,152 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                
-                
-				<!-- Begin Page Content -->
+
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">View Employee Details</h1>
-                        
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="container-fluid">
-					
-					
-						
-						  <form action="./GetEmployee" method="post">
-							<div class="row">
-						
-								<h4 style="text-align: center;">Profile Details</h4>
+                
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">View Employee Details</h1>
+                </div>
+                
+                
+                	<%Employee emp = (Employee) request.getAttribute("employee"); %>
+                	
+                <!-- Search Employee -->
+                <form action="./GetEmployee" method="post">
 							
-							</div>
-							
-							<div class="row">
-							<div class="col-half">
-							<div class="input-group input-group-icon">
-								<input type="text" name="empid" id="empid" placeholder="Employee ID" required>
-								<div class="input-icon"><i class="fa fa-lock"></i></div>
-							</div>
-							</div>
-							</div>
-							
-							<button type="submit" class="cancel">Search</button>
-							
-						
-						</form>
-						
-						<br><br>
-						
-						<h1>Employee List</h1>
-						<br>
-						<table>
-                    		<tr>
-                    			<th>Employee ID</th>
-                    			<th>Full Name</th>
-                    			<th>Email Address</th>
-                    			<th>Nic Number</th>
-                    			<th>Contact Number</th>
-                    			<th>Permanent Address</th>
-                    			<th>Working Type</th>
-                    			<th>Department</th>
-                    			<th>Designation</th>
-                    			<th>Action</th>
-                    		</tr>
-                    		<% ArrayList<Employee> empy = new ArrayList<>();
-                               
-                               IEmployee iemp = new EmployeeImpl();
-                                            		
-                               empy = iemp.ListEmployee();
-                               
-                               for(Employee emplo : empy){
-                               %>
-                    		<tr>
-                    			<td><%=emplo.getEmpid() %></td>
-                    			<td><%=emplo.getFullname() %></td>
-                    			<td><%=emplo.getEmail() %></td>
-                    			<td><%=emplo.getNic() %></td>
-                    			<td><%=emplo.getContact() %></td>
-                    			<td><%=emplo.getAddress() %></td>
-                    			<td><%=emplo.getType() %></td>
-                    			<td><%=emplo.getDepartment() %></td>
-                    			<td><%=emplo.getDesignation() %></td>
-                    			<td>
-                    				<form action="./GetEmployee" method="post">
-                    					<input type="hidden" name="empid" value="<%=emplo.getEmpid()%>">
-                    					<button type="submit" style="background-color: #4CAF50; font-size: 20px; border-radius: 12px;">Edit</button>
-                    				</form>
-                    				
-                    				<form action="./DeleteEmployee" method="post">
-                    					<input type="hidden" name="empid" value="<%=emplo.getEmpid()%>">
-                    					<button type="submit" style="background-color: #F44336; font-size: 20px; border-radius: 12px;">Delete</button>
-                    				</form>
-                    			</td>
-                    		</tr>
-                    		
-                    		<%} %>
-                    	</table>
-						
+					<div class="row">
+					<div class="col-half">
+					<div class="input-group input-group-icon">
+						<input type="text" name="empid" id="empid" placeholder="Employee ID" required>
+						<div class="input-icon"><i class="fa fa-lock"></i></div>
 					</div>
-                    
-                    </div>
-                   </div>
-                   
+					</div>
+					</div>
+							
+					<button type="submit" class="cancel">Search</button>
+							
+						
+				</form>
+				<br>
+				<br>
+				<% if(emp != null  && emp.getNic() != null) { %>
+				
+				<!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Details of <%=emp.getEmpid() %></h1>
+                </div>
+                <br>
+                	
+				<form action="./UpdateEmployee" method="post">
+								
+					<div class="row">
+					<div class="col-half">
+						<h4>Full Name</h4>
+						<div class="input-group ">
+							<input type="text" name="fname" id="fname" value="<%=emp.getFullname()%>" readonly>
+						</div>
+					</div>
+								
+					<div class="col-half">
+						<h4>Email Address</h4>
+						<div class="input-group ">
+							<input type="email" name="email" id="email" value="<%=emp.getEmail()%>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}">
+						</div>
+					</div>
+					</div>
+								
+					<div class="row">
+					<div class="col-half">
+						<h4>Nic Number</h4>
+						<div class="input-group ">
+							<input type="text" name="nic" id="nic" value="<%=emp.getNic()%>" readonly>
+						</div>
+					</div>
+								
+					<div class="col-half">
+						<h4>Phone Number</h4>
+						<div class="input-group ">
+							<input type="tel" name="phone" id="phone" value="<%=emp.getContact()%>" pattern="[0-9]{10}">
+						</div>
+					</div>
+					</div>
+								
+					<div class="row">
+					<div class="col-half">
+						<h4>Permanent Address</h4>
+						<div class="input-group ">
+							<input type="text" name="address" id="address" value="<%=emp.getAddress()%>" >
+						</div>
+					</div>
+								
+					<div class="col-half">
+						<h4>Date Of Birth</h4>
+						<div class="input-group ">
+							<input type="date" name="dob" id="dob" value="<%=emp.getDob()%>" readonly>
+						</div>
+						</div>
+					</div>
+								
+					<div class="row">
+					<div class="col-half">
+						<h4>Gender</h4>
+						<div class="input-group ">
+							<input type="date" name="gender" id="gender" value="<%=emp.getGender()%>" readonly>
+						</div>
+					</div>
+								
+					<div class="col-half">
+						<h4>Working Type</h4>
+						<div class="input-group ">
+							<input type="date" name="type" id="type" value="<%=emp.getType()%>" readonly>
+						</div>
+					</div>
+					</div>
+								
+					<div class="row">
+					<div class="col-half">
+						<h4>Department</h4>
+						<div class="input-group ">
+							<input type="text" name="dept" id="dept" value="<%=emp.getDepartment()%>" readonly>
+						</div>
+					</div>
+								
+					<div class="col-half">
+						<h4>Designation</h4>
+						<div class="input-group ">
+							<input type="text" name="desc" id="desc" value="<%=emp.getDesignation()%>" readonly>
+						</div>
+					</div>
+					</div>
+								
+					<input type="hidden" name="empid" value="<%=emp.getEmpid() %>">
+								
+						<button type="submit" class="cancel">Save Changes</button>
+										
+				</form>
+				<br>
+							
+				<form action="./DeleteEmployee" method="post">
+								
+					<input type="hidden" name="empid" value="<%=emp.getEmpid() %>">
+								
+						<button type="submit" class="submit" id="deletebtn">Deactivate Account</button>
+				</form>
+						
+				<%} %>
+                
+                <!-- End search Employee -->
+                
+                </div>
+	            <!-- End of Main Content -->
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span style="color: black;">Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>
@@ -388,7 +457,11 @@
         </div>
     </div>
 
-    
+    <!-- Core plugin JavaScript-->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

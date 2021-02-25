@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.model.Employee;
 import com.model.Salary;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class CalculateSalary
@@ -46,22 +46,22 @@ public class CalculateSalary extends HttpServlet {
 		Employee employee = new Employee();
 		Salary salary = new Salary();
 		
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		
-		employee = iemployee.getEmployee(request.getParameter("empid"));
+		employee = ipayroll.getEmployee(request.getParameter("empid"));
 		
 		float basicSalary = salary.calcBasicSal(employee.getDesignation());
 		
 		String empid = request.getParameter("empid");
 		String month = request.getParameter("month");
-		int day = iemployee.getAttendance(empid, month);
+		int day = ipayroll.getAttendance(empid, month);
 		
 		salary.setDays(day);
 		
-		if(day > 20) {
+		if(day > 24) {
 			float overtime = salary.calcOvertime(employee.getDesignation(), salary.getDays());
 			salary.setOvertime(overtime);
-		}else if(day < 14){
+		}else if(day < 19){
 			float leave = salary.calcLeave(employee.getDesignation(), salary.getDays());
 			salary.setLeave(leave);
 			}

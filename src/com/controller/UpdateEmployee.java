@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Employee;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class UpdateEmployee
@@ -43,7 +43,7 @@ public class UpdateEmployee extends HttpServlet {
 		
 		
 		Employee employee=new Employee();
-		IEmployee employeeimpl=new EmployeeImpl();
+		IPayroll ipayroll=new PayrollImpl();
 		
 		employee.setEmpid(request.getParameter("empid"));
 		employee.setFullname(request.getParameter("fname"));
@@ -57,7 +57,7 @@ public class UpdateEmployee extends HttpServlet {
 		employee.setDepartment(request.getParameter("dept"));
 		employee.setDesignation(request.getParameter("desc"));
 		
-		employeeimpl.updateEmployee(employee);
+		ipayroll.updateEmployee(employee);
 		
 		request.setAttribute("value", 1);
 		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/ViewEmployee.jsp");

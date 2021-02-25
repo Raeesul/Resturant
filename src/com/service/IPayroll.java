@@ -6,7 +6,7 @@ import com.model.Employee;
 import com.model.Leave;
 import com.model.Salary;
 
-public interface IEmployee {
+public interface IPayroll {
 
 	public void registeremployee(Employee employee);
 	
@@ -38,7 +38,11 @@ public interface IEmployee {
 	
 	public void insertSalary(Salary salary);
 	
-	public ArrayList<Salary> getSalary(String empid, String month, String month2);
+	public ArrayList<Salary> SalaryList();
+	
+	public Salary getSalary(int salaryid);
+	
+	public void insertPayroll(Salary salary);
 	
 	public ArrayList<Salary> MonthlySalary(String month);
 }

@@ -1,7 +1,9 @@
 package com.model;
 
-public class Leave extends Employee{
+public class Leave{
 
+	private String empid;
+	private String fullname;
 	private int leaveId;
 	private String fromdate;
 	private String todate;
@@ -11,6 +13,18 @@ public class Leave extends Employee{
 	
 	
 	
+	public String getEmpid() {
+		return empid;
+	}
+	public void setEmpid(String empid) {
+		this.empid = empid;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
 	public String getStatus() {
 		return status;
 	}

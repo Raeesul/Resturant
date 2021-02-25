@@ -2,19 +2,41 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class Salary extends Employee{
+public class Salary{
 
-	
+	private int salaryid;
+	private String empid;
+	private String fullname;
 	private String month;
 	private int days;
+	private String date;
 	private float basicSal;
 	private float overtime;
 	private float leave;
 	private float netSal;
 	private float totSalary;
+	private String Status;
 	private ArrayList<Salary> summary;
 	
 	
+	public int getSalaryid() {
+		return salaryid;
+	}
+	public void setSalaryid(int salaryid) {
+		this.salaryid = salaryid;
+	}
+	public String getEmpid() {
+		return empid;
+	}
+	public void setEmpid(String empid) {
+		this.empid = empid;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
 	public String getMonth() {
 		return month;
 	}
@@ -27,6 +49,13 @@ public class Salary extends Employee{
 	}
 	public void setDays(int days) {
 		this.days = days;
+	}
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public float getBasicSal() {
 		return basicSal;
@@ -47,10 +76,10 @@ public class Salary extends Employee{
 		this.leave = leave;
 	}
 	public float getNetSal() {
-		if(days > 20) {
+		if(days > 24) {
 			return netSal = (basicSal + overtime) ;
 		}
-		else if (days <= 13) {
+		else if (days <= 18) {
 			return netSal = (basicSal - leave) ;
 		}
 		else {
@@ -65,6 +94,13 @@ public class Salary extends Employee{
 	}
 	public void setTotSalary(float totSalary) {
 		this.totSalary = totSalary;
+	}
+	
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
 	}
 	public ArrayList<Salary> getSummary() {
 		return summary;
@@ -105,61 +141,61 @@ public class Salary extends Employee{
 	
 	public float calcOvertime(String designation, int days) {
 		if(designation.equals("Manager")) {
-			return 1000*(days-20);
+			return 1000*(days-24);
 		}
 		else if(designation.equals("Clerk")) {
-			return 800*(days-20);
+			return 800*(days-24);
 		}
 		else if(designation.equals("Chef")) {
-			return 1200*(days-20);
+			return 1200*(days-24);
 		}
 		else if(designation.equals("Cashier")) {
-			return 800*(days-20);
+			return 800*(days-24);
 		}
 		else if(designation.equals("Supervisor")) {
-			return 500*(days-20);
+			return 500*(days-24);
 		}
 		else if(designation.equals("Driver")) {
-			return 550*(days-20);
+			return 550*(days-24);
 		}
 		else if(designation.equals("Trainer")) {
-			return 820*(days-20);
+			return 820*(days-24);
 		}
 		else if(designation.equals("Server")) {
-			return 400*(days-20);
+			return 400*(days-24);
 		}
 		else {
-			return 200*(days-20);
+			return 200*(days-24);
 		}
 	}
 	
 	public float calcLeave(String designation, int days) {
 		if(designation.equals("Manager")) {
-			return 1000*(14-days);
+			return 1000*(19-days);
 		}
 		else if(designation.equals("Clerk")) {
-			return 800*(14-days);
+			return 800*(19-days);
 		}
 		else if(designation.equals("Chef")) {
-			return 1200*(14-days);
+			return 1200*(19-days);
 		}
 		else if(designation.equals("Cashier")) {
-			return 800*(14-days);
+			return 800*(19-days);
 		}
 		else if(designation.equals("Supervisor")) {
-			return 500*(14-days);
+			return 500*(19-days);
 		}
 		else if(designation.equals("Driver")) {
-			return 550*(14-days);
+			return 550*(19-days);
 		}
 		else if(designation.equals("Trainer")) {
-			return 820*(14-days);
+			return 820*(19-days);
 		}
 		else if(designation.equals("Server")) {
-			return 400*(14-days);
+			return 400*(19-days);
 		}
 		else {
-			return 200*(14-days);
+			return 200*(19-days);
 		}
 	}
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Employee;
-import com.service.EmployeeImpl;
+import com.service.PayrollImpl;
 
 /**
  * Servlet implementation class EmployeeRegister
@@ -41,7 +41,7 @@ public class EmployeeRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Employee employee=new Employee();
-		EmployeeImpl employeeimpl=new EmployeeImpl();
+		PayrollImpl ipayroll=new PayrollImpl();
 		
 		employee.setEmpid(request.getParameter("empid"));
 		employee.setFullname(request.getParameter("fullname"));
@@ -56,10 +56,10 @@ public class EmployeeRegister extends HttpServlet {
 		employee.setDepartment(request.getParameter("dept"));
 		employee.setDesignation(request.getParameter("desc"));
 		
-		employeeimpl.registeremployee(employee);
+		ipayroll.registeremployee(employee);
 		
 		request.setAttribute("value", 1);
-		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/EmployeeRegister.jsp");
+		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/AddEmployee.jsp");
 		dispatcher.forward(request, response);
 	}
 

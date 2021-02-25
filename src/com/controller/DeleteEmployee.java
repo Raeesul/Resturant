@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class DeleteEmployee
@@ -41,12 +41,12 @@ public class DeleteEmployee extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String empid = request.getParameter("empid");
-		IEmployee iemployee = new EmployeeImpl();
-		iemployee.DeleteEmployee(empid);
+		IPayroll ipayroll = new PayrollImpl();
+		ipayroll.DeleteEmployee(empid);
 		
 		request.setAttribute("Value", 1);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewEmployee.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EmployeeList.jsp");
 		dispatcher.forward(request, response);
 	}
 

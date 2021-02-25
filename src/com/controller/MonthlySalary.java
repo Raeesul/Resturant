@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Salary;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class MonthlySalary
@@ -42,7 +42,7 @@ public class MonthlySalary extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		IEmployee employeeimpl = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		
 		String month = (request.getParameter("month"));
 		
@@ -52,7 +52,7 @@ public class MonthlySalary extends HttpServlet {
 		
 		ArrayList<Salary> summary = new ArrayList<>();
 		
-		summary = employeeimpl.MonthlySalary(month);
+		summary = ipayroll.MonthlySalary(month);
 		
 		salary.setSummary(summary);
 		

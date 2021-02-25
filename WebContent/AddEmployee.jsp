@@ -1,44 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="css/add.css">
-    <title>Add new employee</title>
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Add Employees</title>
+
     <!-- Custom fonts for this template-->
     <link href="css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    
+    <!-- Bootstrap link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+    <!-- Form Style -->
+    <link rel="stylesheet" href="css/add.css">
+    
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- Bootstrap core JavaScript-->
-    <script src="js/jquery.min.js"></script>
-    <!-- Core plug in JavaScript-->
-    <script src="js/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-	
-	<script type="text/javascript">
-		function enableButton() {
-			if(document.getElementById("submitbtn")){
-				alert("Successfully Added New Employee....");
-			}
-		}
-	</script>
-	
 </head>
 
 <body id="page-top">
@@ -46,15 +38,15 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Side bar -->
+        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="EmployeeDashboard.jsp">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="User&PayrollDashboard.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin <sup>Employee management</sup></div>
+                <div class="sidebar-brand-text mx-3">Manager User & Payroll<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -62,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="EmployeeDashboard.jsp">
+                <a class="nav-link" href="User&PayrollDashboard.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -76,31 +68,74 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-
-           	<li class="nav-item active">
-                <a class="nav-link collapsed" href="EmployeeRegister.jsp"><i class="fa fa-user"></i>Add New Employee</a>
-            </li>
-           
-           	<li class="nav-item">
-                <a class="nav-link collapsed" href="ViewEmployee.jsp"><i class="fa fa-address-card"></i>Employee Details</a>
-            </li>
-           	
-           	<li class="nav-item">
-                <a class="nav-link" href="EnterAttendance.jsp"><i class="fa fa-calendar"></i>Enter Attendance</a>
-            </li>
-           	
-           	<li class="nav-item">
-                <a class="nav-link" href="LeaveRequest.jsp"><i class="fa fa-file-text"></i>Leave Request</a>
-            </li>
-           	
-           	<li class="nav-item">
-                <a class="nav-link" href="CalculateSalary.jsp"><i class="fa fa-calculator"></i>Calculate Salary</a>
+            <li class="nav-item  active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Employee</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Employees:</h6>
+                        <a class="collapse-item  active" href="AddEmployee.jsp">Add New Employee</a>
+                        <a class="collapse-item" href="ViewEmployee.jsp">View Employee</a>
+                        <a class="collapse-item" href="EmployeeList.jsp">Employee List</a>
+                    </div>
+                </div>
             </li>
             
+            <!-- Nav Department Details -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="ViewSalaryDetails.jsp"><i class="fa fa-file-text"></i>Salary Details</a>
+                <a class="nav-link" href="Departments.jsp">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Departments</span></a>
             </li>
             
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Leave & Attendance</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Attendance:</h6>
+                        <a class="collapse-item" href="EnterAttendance.jsp">Enter Attendance</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Leave:</h6>
+                        <a class="collapse-item" href="AddLeaveRequest.jsp">Add Leave</a>
+                        <a class="collapse-item" href="LeaveRequestList.jsp">Leave List</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>PayRoll</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Payroll:</h6>
+                        <a class="collapse-item" href="CalculateSalary.jsp">Calculate Salary</a>
+                        <a class="collapse-item" href="Payroll.jsp">Payroll</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            
+            <!-- Nav Monthly Salary Details -->
+            <li class="nav-item">
+                <a class="nav-link" href="ViewSalaryDetails.jsp">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>View Salary</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -109,6 +144,7 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -182,10 +218,6 @@
                                     Alerts Center
                                 </h6>
                                 
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -200,6 +232,7 @@
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
+                                
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
@@ -241,22 +274,17 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                
-                
-				<!-- Begin Page Content -->
+
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
+                
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Add New Employee</h1>
+                </div>
+                
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Add New Employee</h1>
-                        
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="container-fluid">
-		
-						
-						  <form action="./EmployeeRegister" method="post" onsubmit="return enableButton()" class="container">
+                    <form action="./EmployeeRegister" method="post" onsubmit="return enableButton()" class="">
 						    
 						     
 						      
@@ -362,16 +390,16 @@
 						    <div class="col-half">
 						    <h4>Department</h4>
 						        <div class="input-group">
-						          <input type="radio" name="dept" value="Employee Management" id="employee"/>
-						          <label for="employee">Employee Management</label>
-						          <input type="radio" name="dept" value="Finance Management" id="finance"/>
-						          <label for="finance">Finance Management</label>
+						          <input type="radio" name="dept" value="User & Payroll Management" id="employee"/>
+						          <label for="employee">User & Payroll Management</label>
+						          <input type="radio" name="dept" value="POS & Transaction Management" id="finance"/>
+						          <label for="finance">POS & Transaction Management</label>
 						          <input type="radio" name="dept" value="Inventory Management" id="Inventory"/>
 						          <label for="Inventory">Inventory Management</label>
 						          <input type="radio" name="dept" value="Customer Management" id="Customer"/>
 						          <label for="Customer">Customer Management</label>
 						          <input type="radio" name="dept" value="Supplier Management" id="Supplier"/>
-						          <label for="Supplier">Employee Management</label>
+						          <label for="Supplier">Supplier Management</label>
 						          <input type="radio" name="dept" value="Delivery Management" id="Delivery"/>
 						          <label for="Delivery">Delivery Management</label>
 						        </div>
@@ -390,8 +418,8 @@
 						          <label for="Trainer">Trainer</label>
 						          <input type="radio" name="desc" value="Chef" id="Chef"/>
 						          <label for="Chef">Chef</label>
-						          <input type="radio" name="desc" value="Supplier" id="Supplier"/>
-						          <label for="Supplier">Supplier</label>
+						          <input type="radio" name="desc" value="Supplier" id="Suppl"/>
+						          <label for="Suppl">Supplier</label>
 						          <input type="radio" name="desc" value="Driver" id="Driver"/>
 						          <label for="Driver">Driver</label>
 						        </div>
@@ -409,16 +437,15 @@
 						      </div>
 						      
 						  </form>
-					</div>
-                    
-                    </div>
-                   </div>
-                   
+
+	            </div>
+	            <!-- End of Main Content -->
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span style="color: black;">Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>
@@ -455,7 +482,11 @@
         </div>
     </div>
 
-    
+    <!-- Core plugin JavaScript-->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Leave;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class UpdateLeaveRequest
@@ -42,7 +42,8 @@ public class UpdateLeaveRequest extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Leave leave = new Leave();
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
+		
 		
 		leave.setLeaveId(Integer.parseInt(request.getParameter("leaveid")));
 		leave.setEmpid(request.getParameter("empid"));
@@ -52,10 +53,10 @@ public class UpdateLeaveRequest extends HttpServlet {
 		leave.setReason(request.getParameter("reason"));
 		leave.setStatus(request.getParameter("status"));
 		
-		iemployee.UpdateLeaveRequest(leave);
+		ipayroll.UpdateLeaveRequest(leave);
 		
 		request.setAttribute("value", 1);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeaveRequest.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LeaveRequestList.jsp");
 		dispatcher.forward(request, response);
 		
 	}

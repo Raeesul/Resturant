@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Salary;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class InsertSalary
@@ -40,24 +40,23 @@ public class InsertSalary extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
 		
 		Salary salary = new Salary();
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		
 		String empid = request.getParameter("empid");
 		String month = request.getParameter("month");
-		int day = iemployee.getAttendance(empid, month);
+		int day = ipayroll.getAttendance(empid, month);
 		
-		salary.setEmpid(request.getParameter("empid"));
-		salary.setMonth(request.getParameter("date"));
+		salary.setEmpid(empid);
+		salary.setMonth(month);
+		
 		salary.setBasicSal(Float.parseFloat(request.getParameter("basicsalary")));
 		
-		if(day > 20) {
+		if(day > 24) {
 			salary.setOvertime(Float.parseFloat(request.getParameter("ot")));
 		}
-		else if(day < 14) {
+		else if(day < 19) {
 			salary.setLeave(Float.parseFloat(request.getParameter("leave")));
 		}
 		else {
@@ -66,7 +65,7 @@ public class InsertSalary extends HttpServlet {
 		}
 		salary.setTotSalary(Float.parseFloat(request.getParameter("netsalary")));
 		
-		iemployee.insertSalary(salary);
+		ipayroll.insertSalary(salary);
 		
 		request.setAttribute("value", 1);
 		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/CalculateSalary.jsp");

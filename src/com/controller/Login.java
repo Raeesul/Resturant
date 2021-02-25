@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 			if(un.equalsIgnoreCase("adminEmployee")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", un);
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EmployeeDashboard.jsp");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/User&PayrollDashboard.jsp");
 				dispatcher.forward(request, response);
 			}
 		}

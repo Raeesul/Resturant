@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Employee;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class GetEmployee
@@ -42,18 +42,18 @@ public class GetEmployee extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String empid = request.getParameter("empid");
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		
 		
-		if(iemployee.checkEmp(empid) == false) {
+		if(ipayroll.checkEmp(empid) == false) {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewEmployee.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			Employee employee = new Employee();
-			employee = iemployee.getEmployee(empid);
+			employee = ipayroll.getEmployee(empid);
 			
 			request.setAttribute("employee", employee);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/GetEmployee.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewEmployee.jsp");
 			dispatcher.forward(request, response);
 			
 		}

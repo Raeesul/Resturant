@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Employee;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class EmployeeList
@@ -43,14 +43,14 @@ public class EmployeeList extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll iemployee = new PayrollImpl();
 		Employee employee = new Employee();
 		
 		employee = iemployee.getEmployee(request.getParameter("empid"));
 		
 		request.setAttribute("employee", employee);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/GetEmployee.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EmployeeList.jsp");
 		dispatcher.forward(request, response);
 	}
 

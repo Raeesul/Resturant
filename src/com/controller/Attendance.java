@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Salary;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class Attendance
@@ -42,13 +42,13 @@ public class Attendance extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Salary salary = new Salary();
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		
 		salary.setEmpid(request.getParameter("empid"));
 		salary.setMonth(request.getParameter("month"));
 		salary.setDays(Integer.parseInt(request.getParameter("days")));
 		
-		iemployee.enterAttendance(salary);
+		ipayroll.enterAttendance(salary);
 		
 		request.setAttribute("value", 1);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/EnterAttendance.jsp");

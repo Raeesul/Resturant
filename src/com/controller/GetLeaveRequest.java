@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model.Leave;
-import com.service.EmployeeImpl;
-import com.service.IEmployee;
+import com.service.PayrollImpl;
+import com.service.IPayroll;
 
 /**
  * Servlet implementation class GetLeaveRequest
@@ -42,10 +42,10 @@ public class GetLeaveRequest extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int leaveid = Integer.parseInt(request.getParameter("leave"));
-		IEmployee iemployee = new EmployeeImpl();
+		IPayroll ipayroll = new PayrollImpl();
 		Leave leave = new Leave();
 		
-		leave = iemployee.getLeaveRequest(leaveid);
+		leave = ipayroll.getLeaveRequest(leaveid);
 		
 		request.setAttribute("leave", leave);
 		

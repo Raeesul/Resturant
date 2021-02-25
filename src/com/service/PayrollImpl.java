@@ -11,7 +11,7 @@ import com.model.Leave;
 import com.model.Salary;
 import com.util.DBConnection;
 
-public class EmployeeImpl implements IEmployee{
+public class PayrollImpl implements IPayroll{
 
 	private static Connection connection;
 	private static PreparedStatement pt;
@@ -55,7 +55,25 @@ public class EmployeeImpl implements IEmployee{
 		
 		try {
 			connection=DBConnection.initializedb();
+			pt=connection.prepareStatement("delete from Attendance where emp_id=?");
+			pt.setString(1,empid);
+			pt.execute();
+			pt.close();
 			
+			pt=connection.prepareStatement("delete from Salary where Emp_Id=?");
+			pt.setString(1,empid);
+			pt.execute();
+			pt.close();
+			
+			pt=connection.prepareStatement("delete from LeaveRequest where Emp_Id=?");
+			pt.setString(1,empid);
+			pt.execute();
+			pt.close();
+			
+			pt=connection.prepareStatement("delete from SalaryTransaction where Emp_ID=?");
+			pt.setString(1,empid);
+			pt.execute();
+			pt.close();
 			
 			pt=connection.prepareStatement("delete from Employee where Emp_Id=?");
 			pt.setString(1,empid);
@@ -259,6 +277,7 @@ public class EmployeeImpl implements IEmployee{
 			
 			while(result.next()){
 				
+				leave.setLeaveId(result.getInt(1));
 				leave.setEmpid(result.getString(2));
 				leave.setFromdate(result.getString(3));
 				leave.setTodate(result.getString(4));
@@ -435,6 +454,15 @@ public class EmployeeImpl implements IEmployee{
 			pt.setFloat(6, salary.getTotSalary());
 			
 			pt.execute();
+			pt.close();
+			
+			pt=connection.prepareStatement("insert into SalaryTransaction(Emp_ID,Month,Status,Amount) values(?,?,?,?)");
+			pt.setString(1, salary.getEmpid());
+			pt.setString(2, salary.getMonth());
+			pt.setString(3, "Not Paid");
+			pt.setFloat(4, salary.getTotSalary());
+			
+			pt.execute();
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -448,35 +476,97 @@ public class EmployeeImpl implements IEmployee{
 
 
 	@Override
-	public ArrayList<Salary> getSalary(String empid, String month, String month2) {
-		// TODO Auto-generated method stub
+	public ArrayList<Salary> SalaryList() {
 		
-		ArrayList<Salary> salary1 = new ArrayList<>();
+		ArrayList<Salary> salary=new ArrayList<>();   
+        
+        try {
+				   connection=DBConnection.initializedb();
+				   pt=connection.prepareStatement("Select * from SalaryTransaction");
+				   ResultSet result=pt.executeQuery();
+				   
+				   while(result.next()) {
+					   
+					   Salary salaries = new Salary();
+					   
+					   salaries.setSalaryid(result.getInt(1));
+					   salaries.setEmpid(result.getString(2));
+					   salaries.setMonth(result.getString(3));
+					   salaries.setStatus(result.getString(4));
+					   salaries.setTotSalary(result.getFloat(5));
+					   
+					   salary.add(salaries);
+				   }
+				   
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 				   
+        return salary;
+	}
+	
+
+	@Override
+	public Salary getSalary(int salaryid) {
 		
+		Salary salary = new Salary();
+
 		try {
 			connection=DBConnection.initializedb();
-			pt=connection.prepareStatement("select attendMonth,BasicSalary,Overtime,NetSalary from Salary where Emp_Id=? AND attendMonth BETWEEN ? AND ?");
-			pt.setString(1, empid);
-			pt.setString(2, month);
-			pt.setString(3, month2);
+			pt=connection.prepareStatement("select * from SalaryTransaction where ST_Id=?");
+			pt.setInt(1, salaryid);
 			ResultSet result=pt.executeQuery();
 			
 			while(result.next()){
 				
-				Salary salary = new Salary();
-				salary.setMonth(result.getString(1));
-				salary.setBasicSal(result.getFloat(2));
-				salary.setOvertime(result.getFloat(3));
-				salary.setTotSalary(result.getFloat(4));
+				salary.setSalaryid(result.getInt(1));
+				salary.setEmpid(result.getString(2));
+				salary.setMonth(result.getString(3));
+				salary.setStatus(result.getString(4));
+				salary.setTotSalary(result.getFloat(5));
 				
-				salary1.add(salary);
 			}
-		}catch (Exception e) {
+			
+			
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-					
-						e.printStackTrace();
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return salary1;
+		
+		
+		return salary;
+	}
+	
+	
+	@Override
+	public void insertPayroll(Salary salary) {
+		// TODO Auto-generated method stub
+		
+		try {
+			connection=DBConnection.initializedb();
+			pt=connection.prepareStatement("update SalaryTransaction set Status=? where Emp_ID=? and Month=?");
+			pt.setString(1, "Paid");
+			
+			pt.setString(2, salary.getEmpid());
+			pt.setString(3, salary.getMonth());
+			
+			pt.execute();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 
@@ -512,6 +602,4 @@ public class EmployeeImpl implements IEmployee{
 		return salary2;
 	}
 
-
-	
 }
